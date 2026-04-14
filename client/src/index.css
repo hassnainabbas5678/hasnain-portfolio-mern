@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===============================
+   DESIGN TOKENS (CYBER DARK)
+================================ */
+
+:root {
+  --bg-main: #05070f;
+  --bg-secondary: #0b1020;
+
+  --neon-blue: #00e5ff;
+  --neon-purple: #7c7cff;
+  --neon-cyan: #2de2e6;
+
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.65);
+}
+
+/* ===============================
+   GLOBAL RESET
+================================ */
+
+html,
+body {
+  background: radial-gradient(
+      1200px 600px at 80% -10%,
+      rgba(124, 124, 255, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(
+      1000px 500px at 10% 10%,
+      rgba(0, 229, 255, 0.12),
+      transparent 35%
+    ),
+    var(--bg-main);
+
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   UTILITY CLASSES
+================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.neon-border {
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+}
+
+.neon-text {
+  background: linear-gradient(
+    90deg,
+    var(--neon-blue),
+    var(--neon-purple)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.neon-button {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--neon-blue),
+    var(--neon-purple)
+  );
+  color: #000;
+  font-weight: 600;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.neon-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.neon-button:hover::after {
+  transform: translateX(100%);
+}
+
+/* Horizontal marquee */
+.marquee {
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* FULL-WIDTH testimonials marquee (no outer box) */
+.marquee-full {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* edge fades on full screen */
+.marquee-full::before,
+.marquee-full::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 10;
+  pointer-events: none;
+}
+.marquee-full::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(5,7,15,1), rgba(5,7,15,0));
+}
+.marquee-full::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(5,7,15,1), rgba(5,7,15,0));
+}
+
+/* track */
+.marquee-track {
+  width: max-content;
+  animation: marqueeWide 55s linear infinite; /* SLOW + premium */
+  will-change: transform;
+}
+.marquee-pause:hover {
+  animation-play-state: paused;
+}
+
+/* card size */
+.marquee-card {
+  min-width: 320px;
+}
+@media (min-width: 768px) {
+  .marquee-card {
+    min-width: 460px;
+  }
+}
+
+@keyframes marqueeWide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Expensive name gradient */
+.name-gradient {
+  background: linear-gradient(90deg, rgba(0,229,255,0.95), rgba(124,124,255,0.95), rgba(0,229,255,0.85));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 34px rgba(0,229,255,0.10);
+}
