@@ -39,7 +39,7 @@ connectDB(process.env.MONGO_URI).then(async () => {
 
   app.get("/", (req, res) => {
   res.send("Backend is running successfully!");
-});
+}); 
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server running on port ${PORT}`);
